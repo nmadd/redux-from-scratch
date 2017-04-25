@@ -1,12 +1,10 @@
-function todoApp(state = initialState, action) {
+function reducer(state, action) {
   switch (action.type) {
-    case SET_VISIBILITY_FILTER:
-      return Object.assign({}, state, {
-        visibilityFilter: action.filter
-      })
+    case 'ADD_TODO':
+      var newTodos = state.todos.slice();
+      newTodos.push(action.data)
+      return Object.assign({}, state, {todos: newTodos})
     default:
       return state
   }
 }
-// store.dispatch(action);
-// store.subscribe(component);

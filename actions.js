@@ -1,5 +1,6 @@
-function testAction() {
+function addTodo(newTodo) {
   return {
-    type: 'test'
+    type: 'ADD_TODO',
+    data: newTodo
   }
 }

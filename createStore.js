@@ -1,5 +1,5 @@
-function createStore() {
-  var state = {};
+function createStore(reducer) {
+  var state = {todos: []};
 
   function hiddenFunction() {
     console.log('you found me')
@@ -9,8 +9,9 @@ function createStore() {
     return state;
   }
 
-  function dispatch() {
-
+  function dispatch(action) {
+    // TODO: DO NOT MUTATE STATE!
+    state = reducer(state, action)
   }
 
   function subscribe() {
@@ -26,8 +27,12 @@ function createStore() {
   return publicAPI;
 }
 
-var store = createStore(); // {getState: function()}
+var store = createStore(reducer); // {getState: function()}
 
 // debugger;
 
-console.log(store.getState());
+console.log('State before dispatch', store.getState());
+
+store.dispatch(addTodo('this is a new todo test'));
+
+console.log('State after dispatch', store.getState())
