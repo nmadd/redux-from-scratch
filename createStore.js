@@ -1,5 +1,7 @@
 function createStore(reducer) {
   var state = {todos: []};
+  // we want these components to update and re-render whenever state updates:
+  var components = [];
 
   function hiddenFunction() {
     console.log('you found me')
@@ -11,17 +13,19 @@ function createStore(reducer) {
 
   function dispatch(action) {
     // TODO: DO NOT MUTATE STATE!
-    state = reducer(state, action)
+    state = reducer(state, action);
+    components.forEach(component => component.render());
   }
 
-  function subscribe() {
-
+  function subscribe(component) {
+    components.push(component);
   }
 
   // these are our public functions, aka our public API
   var publicAPI = {
     getState,
-    dispatch
+    dispatch,
+    subscribe
   }
 
   return publicAPI;
@@ -32,7 +36,5 @@ var store = createStore(reducer); // {getState: function()}
 // debugger;
 
 console.log('State before dispatch', store.getState());
-
-store.dispatch(addTodo('this is a new todo test'));
 
 console.log('State after dispatch', store.getState())

@@ -1,14 +1,18 @@
 class Button {
-  constructor(temporaryState) {
-    this.temporaryState = temporaryState;
+  constructor(buttonText) {
+    this.buttonText = buttonText;
+    this.clickHandler = this.clickHandler.bind(this);
   }
-  // state (get state from store)
-  // HTML/DOM componenets to render (instead of JSX)
-  // render method
+
+  clickHandler() {
+    store.dispatch(addTodo());
+  }
+
   render(DOMElement, target) {
-    var newButton = document.createElement('button'); //DOMElement
-    newButton.innerHTML = this.temporaryState;
-    document.body.appendChild(newButton); //target
+    var newButton = document.createElement('button'); //DOMElement\
+    newButton.addEventListener('click', this.clickHandler);
+    newButton.innerHTML = this.buttonText;
+    document.querySelector('.buttons-container').appendChild(newButton); //target
   }
 }
 

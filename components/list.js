@@ -1,6 +1,6 @@
 class List {
   constructor() {
-    this.listItems = ['hello', 'goodbye'];
+    this.listItems = store.getState().todos;
   }
 
   createNewListItem(listItemText) {
@@ -15,11 +15,14 @@ class List {
   }
 
   render() {
+    this.listItems = store.getState().todos;
     var newList = document.createElement('ul');
+    newList.className = 'main-list'
     this.listItems.forEach(item => newList.appendChild(this.createNewListItem(item)));
-    document.body.appendChild(newList);
+    document.body.replaceChild(newList, document.querySelector('.main-list'));
   }
 }
 
 var list1 = new List();
-list1.render();
+
+store.subscribe(list1);
