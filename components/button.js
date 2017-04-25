@@ -4,12 +4,11 @@ class Button {
   }
   // state (get state from store)
   // HTML/DOM componenets to render (instead of JSX)
-
   // render method
-  render() {
-    var newButton = document.createElement('button');
+  render(DOMElement, target) {
+    var newButton = document.createElement('button'); //DOMElement
     newButton.innerHTML = this.temporaryState;
-    document.body.appendChild(newButton);
+    document.body.appendChild(newButton); //target
   }
 }
 

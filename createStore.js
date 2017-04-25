@@ -1,5 +1,5 @@
 function createStore() {
-  var state = {score: 0};
+  var state = {};
 
   function hiddenFunction() {
     console.log('you found me')
@@ -9,9 +9,18 @@ function createStore() {
     return state;
   }
 
+  function dispatch() {
+
+  }
+
+  function subscribe() {
+
+  }
+
   // these are our public functions, aka our public API
   var publicAPI = {
-    getState: getState
+    getState,
+    dispatch
   }
 
   return publicAPI;
